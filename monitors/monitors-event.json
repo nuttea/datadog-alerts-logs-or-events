@@ -1,0 +1,20 @@
+{
+	"id": 212201389,
+	"name": "Event Error - {{event.title}}",
+	"type": "event-v2 alert",
+	"query": "events(\"app:online-document status:error\").rollup(\"count\").by(\"@aggregation_key\").last(\"1m\") > 0",
+	"message": "Error:\npriority: {{event.attributes.priority}}\n\n{{event.link}}\n\n{{event.text}}\n",
+	"tags": [],
+	"options": {
+		"thresholds": {
+			"critical": 0
+		},
+		"enable_logs_sample": false,
+		"notify_audit": false,
+		"on_missing_data": "show_no_data",
+		"include_tags": false,
+		"new_group_delay": 0,
+		"groupby_simple_monitor": false
+	},
+	"priority": 3
+}

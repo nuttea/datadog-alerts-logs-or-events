@@ -1,0 +1,22 @@
+{
+	"id": 212302159,
+	"name": "Logs Error - {{log.attributes.title}}",
+	"type": "log alert",
+	"query": "logs(\"service:datadog-api status:error @tags.event:failed\").index(\"*\").rollup(\"count\").by(\"@transaction_id\").last(\"1m\") > 0",
+	"message": "{{log.attributes.title}}\n\nTransaction ID: {{@transaction_id.name}}\n\n[Link to Log]({{log.link}})\n",
+	"tags": [
+		"app:log-alert"
+	],
+	"options": {
+		"thresholds": {
+			"critical": 0
+		},
+		"enable_logs_sample": true,
+		"notify_audit": false,
+		"on_missing_data": "show_no_data",
+		"include_tags": true,
+		"new_group_delay": 0,
+		"groupby_simple_monitor": false
+	},
+	"priority": 3
+}
